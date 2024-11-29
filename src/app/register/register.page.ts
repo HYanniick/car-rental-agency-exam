@@ -111,5 +111,8 @@ export class RegisterPage implements OnInit {
   public navigateToLogin(): void {
     this.router.navigate(['/login']);
   }
+  public navigateToHome(): void {
+    this.router.navigate(['/car']);
+  }
 
 }

@@ -38,11 +38,9 @@ export class LoginPage implements OnInit {
     addIcons({ eyeOutline, eyeOffOutline });
   }
 
-  ngOnInit() {
-    if (this.authenticationService.getCurrentUser()) {
-      this.router.navigate(['/profile']);
-    }
-  }
+  ngOnInit = () => {
+
+  };
 
   public onToggleShowPassword(): void {
     if (this.passwordType === 'password') {
@@ -93,6 +91,10 @@ export class LoginPage implements OnInit {
 
   public navigateToRegister(): void {
     this.router.navigate(['/register']);
+  }
+
+  public navigateToHome(): void {
+    this.router.navigate(['/car']);
   }
 
 }

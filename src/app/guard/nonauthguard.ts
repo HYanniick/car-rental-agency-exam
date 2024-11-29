@@ -14,8 +14,9 @@ export class NonAuthGuard implements CanActivate {
   ) { }
 
   public async canActivate(): Promise<boolean> {
-    const user = this.authService.getCurrentUser();
+    const user = await this.authService.getCurrentUser();
     if (user) {
+      console.log('User is already logged in');
       await this.errorToast("You must logout before");
       await this.router.navigate(['/car']);
       return false;
