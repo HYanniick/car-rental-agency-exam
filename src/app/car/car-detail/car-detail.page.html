@@ -13,13 +13,12 @@
   <div class="form-container">
     <ion-card>
       <ion-card-header>
-        <ion-card-title>{{ car?.brand }} - {{ car?.model }}</ion-card-title>
-        <ion-card-subtitle>Plaque d'immatriculation : {{ car?.licensePlate }}</ion-card-subtitle>
+        <ion-card-title><p><strong>Marque :</strong> {{ car?.brand }}</p>
+          <p><strong>Modèle :</strong> {{ car?.model }}</p>
+          <p><strong>Plaque d'immatriculation :</strong> {{ car?.licensePlate }}</p></ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p><strong>Marque :</strong> {{ car?.brand }}</p>
-        <p><strong>Modèle :</strong> {{ car?.model }}</p>
-        <p><strong>Plaque d'immatriculation :</strong> {{ car?.licensePlate }}</p>
+
 
         <!-- Photos Section -->
         <div class="photo-section">

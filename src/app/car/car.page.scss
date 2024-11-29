@@ -17,3 +17,48 @@ ion-toolbar {
   --background: #f4f5f8;
   padding: 15px !important;
 }
+
+.car-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  padding: 16px;
+}
+
+ion-card {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  ion-card-header {
+    background-color: #222428FF;
+    color: var(--ion-color-light);
+    padding: 16px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  ion-card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+  }
+
+  ion-card-content {
+    padding: 16px;
+    text-align: left;
+
+    p {
+      margin: 8px 0;
+      font-size: 0.9rem;
+      color: var(--ion-color-dark);
+    }
+  }
+}
