@@ -8,7 +8,7 @@ import {
   User,
   UserCredential,
 } from 'firebase/auth';
-import { getDatabase, ref, set } from 'firebase/database';
+import {getDatabase, ref, set, get} from 'firebase/database';
 import { BehaviorSubject } from 'rxjs';
 import { IUser } from 'src/app/models/user.interface';
 
@@ -53,6 +53,22 @@ export class AuthenticationService {
       onAuthStateChanged(this.auth, (user) => {
         resolve(user);
       });
+    });
+  }
+
+  public getUserDataByUid(uid: string): Promise<any> {
+    const db = getDatabase();
+    const userRef = ref(db, `users/${uid}`);
+    return new Promise((resolve, reject) => {
+      get(userRef)
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            resolve(snapshot.val());
+          } else {
+            reject("No user data found");
+          }
+        })
+        .catch((error) => reject("Failed to fetch user data: " + error.message));
     });
   }
 

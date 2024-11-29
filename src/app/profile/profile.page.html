@@ -1,8 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Profile</ion-title>
+    <ion-title>Profil</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="navigateToHome()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
 
 <ion-content>
   <div class="profile-container">
@@ -15,7 +21,6 @@
 
       <div class="details">
         <p><strong>Phone:</strong> {{ user.phoneNumber }}</p>
-        <p><strong>Role:</strong> {{ user.role }}</p>
 
         <ion-button expand="block" color="danger" (click)="onLogout()">
           Logout

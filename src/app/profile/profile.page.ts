@@ -17,7 +17,6 @@ export class ProfilePage implements OnInit {
     fullName: '',
     email: '',
     phoneNumber: '',
-    role: 'User',
   };
 
   constructor(
@@ -27,16 +26,19 @@ export class ProfilePage implements OnInit {
 
   ngOnInit(): void {
     this.authService.getCurrentUser().then((currentUser: any) => {
-      if (currentUser) {
-        this.user = {
-          fullName: currentUser.fullName || 'N/A',
-          email: currentUser.email || 'N/A',
-          phoneNumber: currentUser.phoneNumber || 'N/A',
-          role: currentUser.role || 'User',
-        };
+      if (currentUser?.uid) {
+        this.authService.getUserDataByUid(currentUser.uid).then((userData) => {
+          this.user = {
+            fullName: userData.fullName || 'N/A',
+            email: userData.email || 'N/A',
+            phoneNumber: userData.phoneNumber || 'N/A',
+          };
+        }).catch((error) => {
+          console.error('Error fetching user data:', error);
+        });
       }
     }).catch((error) => {
-      console.error('Error fetching user data:', error);
+      console.error('Error fetching current user:', error);
     });
   }
 
@@ -46,5 +48,9 @@ export class ProfilePage implements OnInit {
     }).catch((error) => {
       console.error('Error logging out:', error);
     });
+  }
+
+  public navigateToHome(): void {
+    this.router.navigate(['/car']);
   }
 }
