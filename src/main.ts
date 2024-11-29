@@ -8,19 +8,23 @@ import { AppComponent } from './app/app.component';
 import { initializeApp } from "firebase/app";
 import { importProvidersFrom } from "@angular/core";
 import { IonicModule } from "@ionic/angular";
-import {environment} from "./environments/environment";
-
-
+import { environment } from './environments/environment';
+import { browserSessionPersistence, getAuth, setPersistence } from 'firebase/auth';
 
 initializeApp(environment.firebaseConfig);
+
+const auth = getAuth();
+setPersistence(auth, browserSessionPersistence).catch(() => {
+
+})
 
 bootstrapApplication(AppComponent, {
   providers: [
     {
       provide: RouteReuseStrategy, useClass: IonicRouteStrategy
     },
-    importProvidersFrom(IonicModule.forRoot({innerHTMLTemplatesEnabled: true})),
+    importProvidersFrom(IonicModule.forRoot({ innerHTMLTemplatesEnabled: true })),
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
   ],
-}).then(r => console.log('Application has been bootstrapped!' + r));
+});

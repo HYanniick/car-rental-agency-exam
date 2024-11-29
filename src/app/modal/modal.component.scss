@@ -1,0 +1,11 @@
+@import 'src/app/app.component.scss';
+
+ion-header {
+  --background: $error-color;
+}
+
+ion-item {
+  font-size: 18px;
+  color: $error-color;
+}
+

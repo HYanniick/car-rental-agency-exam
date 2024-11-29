@@ -1,76 +1,102 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Inscription</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true" class="register">
-  <div>
-    <form [formGroup]="registerForm">
-      <ion-item>
-        <ion-input
-          label="Fullname"
-          labelPlacement="stacked"
-          placeholder="John Doe"
-          formControlName="fullName"
-        >
-        </ion-input>
-      </ion-item>
-      @if (registerForm.get('fullName')?.dirty) {
-        @if (registerForm.get('fullName')?.errors?.['required']) {
-          <span class="span-error">This field is required</span>
-        }
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-align-items-center" style="height: calc(100vh - 75px);">
+      <ion-col size="12" size-md="6" size-lg="4">
+        <div class="form-container">
+          <img
+            ngSrc="./assets/CarRentalAgencyLogo.png"
+            priority
+            class="logo"
+            alt="Car Rental Agency Logo"
+            width="150"
+            height="200"
+          />
+          <form [formGroup]="registerForm">
+            <ion-item>
+              <ion-input label="Nom complet" labelPlacement="stacked" placeholder="Jean Dupont"
+                         formControlName="fullName">
+              </ion-input>
+            </ion-item>
+            @if (registerForm.get('fullName')?.dirty) {
+              @if (registerForm.get('fullName')?.errors?.['required']) {
+                <span class="span-error">Le nom complet est requis</span>
+              }
+              @else if (registerForm.get('fullName')?.errors?.['invalidFullName']) {
+                <span class="span-error">Le nom complet est invalide</span>
+              }
+            }
 
-        @if (registerForm.get('fullName')?.errors?.['minlength']) {
-          <span class="span-error">Minimum characters should be 2.</span>
-        }
-      }
+            <ion-item>
+              <ion-input label="E-mail" labelPlacement="stacked" placeholder="email@example.com"
+                         formControlName="email">
+              </ion-input>
+            </ion-item>
+            @if (registerForm.get('email')?.dirty) {
+              @if (registerForm.get('email')?.errors?.['required']) {
+                <span class="span-error">L'e-mail est requis</span>
+              }
+              @else if (registerForm.get('email')?.errors?.['invalidEmail']) {
+                <span class="span-error">Votre e-mail est invalide</span>
+              }
+            }
 
-      <ion-item>
-        <ion-input
-          label="E-mail"
-          labelPlacement="stacked"
-          placeholder="email@example.com"
-          formControlName="email"
-        >
-        </ion-input>
-      </ion-item>
-      @if (registerForm.get('email')?.dirty) {
-        @if (registerForm.get('email')?.errors?.['required']) {
-          <span class="span-error">This field is required</span>
-        }
+            <ion-item>
+              <ion-input label="Numéro de téléphone" labelPlacement="stacked" placeholder="0701010101"
+                         formControlName="phoneNumber">
+              </ion-input>
+            </ion-item>
+            @if (registerForm.get('phoneNumber')?.dirty) {
+              @if (registerForm.get('phoneNumber')?.errors?.['required']) {
+                <span class="span-error">Le numéro de téléphone est requis</span>
+              }
+              @else if (registerForm.get('phoneNumber')?.errors?.['invalidPhoneNumber']) {
+                <span class="span-error">Votre numéro de téléphone est invalide</span>
+              }
+            }
 
-        @if (registerForm.get('email')?.errors?.['email']) {
-          <span class="span-error">Your e-mail is invalid.</span>
-        }
-      }
+            <ion-item>
+              <ion-input label="Mot de passe" labelPlacement="stacked" [type]="passwordType"
+                         placeholder="***********" formControlName="password">
+              </ion-input>
+              <ion-icon id="icon-eye" [name]="passwordIcon" (click)="onToggleShowPassword()"></ion-icon>
+            </ion-item>
+            @if (registerForm.get('password')?.dirty) {
+              @if (registerForm.get('password')?.errors?.['required']) {
+                <span class="span-error">Le mot de passe est requis</span>
+              }
+              @else if (registerForm.get('password')?.errors?.['weakPassword']) {
+                <span class="span-error">Le mot de passe doit contenir au moins 8 caractères, dont une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial</span>
+              }
+            }
 
-      <ion-item>
-        <ion-input
-          label="Password"
-          labelPlacement="stacked"
-          [type]="passwordType"
-          placeholder="***********"
-          formControlName="password"
-        >
-        </ion-input>
-        <ion-icon id="icon-eye" [name]="passwordIcon" (click)="onToggleShowPassword()"></ion-icon>
-      </ion-item>
-      @if (registerForm.get('password')?.dirty) {
-        @if (registerForm.get('password')?.errors?.['required']) {
-          <span class="span-error">This field is required</span>
-        }
+            <ion-item>
+              <ion-input label="Confirmer le mot de passe" labelPlacement="stacked" [type]="confirmPasswordType"
+                         placeholder="***********" formControlName="confirmPassword">
+              </ion-input>
+              <ion-icon id="icon-eye-confirm" [name]="confirmPasswordIcon"
+                        (click)="onToggleShowConfirmPassword()"></ion-icon>
+            </ion-item>
+            @if (registerForm.get('confirmPassword')?.dirty) {
+              @if (registerForm.get('confirmPassword')?.errors?.['required']) {
+                <span class="span-error">Vous devez confirmer votre mot de passe</span>
+              }
+              @else if (registerForm.get('confirmPassword')?.errors?.['passwordMismatch']) {
+                <span class="span-error">Les mots de passe ne correspondent pas</span>
+              }
+            }
 
-        @if (registerForm.get('password')?.errors?.['minlength']) {
-          <span class="span-error">Your password should be strong with at least 08 characters.</span>
-        }
-      }
+            <div class="container-button">
+              <ion-button size="medium" [disabled]="registerForm.invalid" (click)="onSignUp()">
+                S'inscrire
+              </ion-button>
+            </div>
 
-      <div class="container-button">
-        <ion-button size="medium" [disabled]="registerForm.invalid" (click)="onSignUp()">
-          Sign Up
-        </ion-button>
-      </div>
-    </form>
-  </div>
+            <div class="login-link">
+              <a (click)="navigateToLogin()">Vous avez déjà un compte ? Connectez-vous ici</a>
+            </div>
+          </form>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
