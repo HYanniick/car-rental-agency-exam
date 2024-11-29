@@ -10,9 +10,16 @@
         height="200"
       />    </ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="navigateToLogin()">
-        <ion-icon name="person-circle-sharp"></ion-icon>
-      </ion-button>
+      @if (isLoggedIn) {
+        <ion-button (click)="navigateToProfile()">
+          <ion-icon name="person-circle-sharp"></ion-icon>
+        </ion-button>
+      }
+      @if (!isLoggedIn) {
+        <ion-button (click)="navigateToLogin()">
+          <ion-icon name="person-circle-sharp"></ion-icon>
+        </ion-button>
+      }
     </ion-buttons>
     <ion-buttons slot="end">
       @if (isLoggedIn) {

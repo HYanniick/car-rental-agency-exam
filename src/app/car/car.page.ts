@@ -109,4 +109,9 @@ export class CarPage implements OnInit {
     });
     await toast.present();
   }
+
+  public navigateToProfile(): void {
+    this.router.navigate(['/profile']);
+  }
+
 }

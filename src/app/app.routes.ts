@@ -19,6 +19,11 @@ export const routes: Routes = [
     canActivate: [NonAuthGuard]
   },
   {
+    path: 'profile',
+    loadComponent: () => import('./profile/profile.page').then( m => m.ProfilePage),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'car',
     children: [
       {
