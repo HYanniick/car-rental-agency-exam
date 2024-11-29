@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <img
+        ngSrc="./assets/CarRentalAgencyLogo.png"
+        priority
+        class="logo"
+        alt="Car Rental Agency Logo"
+        width="150"
+        height="200"
+      />    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="navigateToLogin()">
+        <ion-icon name="person-circle-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      @if (isLoggedIn) {
+        <ion-button (click)="onCreationCar()">
+          <ion-icon name="add-circle"></ion-icon>
+        </ion-button>
+        <ion-button (click)="onLogout()">
+          <ion-icon name="power-outline"></ion-icon>
+        </ion-button>
+      }
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let car of cars" (click)="seeDetailsCar(car)">
+      <ion-label>
+        <h2>{{ car.brand }} - {{ car.model }}</h2>
+        <p>{{ car.licensePlate }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

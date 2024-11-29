@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Détails de la voiture</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="navigateToHome()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="car; else noCar" class="car-detail">
+  <div class="form-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ car?.brand }} - {{ car?.model }}</ion-card-title>
+        <ion-card-subtitle>Plaque d'immatriculation : {{ car?.licensePlate }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Marque :</strong> {{ car?.brand }}</p>
+        <p><strong>Modèle :</strong> {{ car?.model }}</p>
+        <p><strong>Plaque d'immatriculation :</strong> {{ car?.licensePlate }}</p>
+
+        <!-- Photos Section -->
+        <div class="photo-section">
+          <div>
+            <h3>Photo avant :</h3>
+            <img *ngIf="car?.photos?.front" [src]="car?.photos?.front" alt="Photo avant de la voiture" />
+          </div>
+          <div>
+            <h3>Photo arrière :</h3>
+            <img *ngIf="car?.photos?.back" [src]="car?.photos?.back" alt="Photo arrière de la voiture" />
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+
+
+<ng-template #noCar>
+  <div class="form-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Erreur</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{ errorMessage }}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ng-template>

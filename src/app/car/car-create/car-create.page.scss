@@ -1,0 +1,47 @@
+.car-create {
+  .form-container {
+    background-color: var(--ion-color-light);
+    padding: 50px;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #222428FF;
+    font-weight: bold;
+  }
+
+  ion-item {
+    margin-bottom: 20px;
+  }
+
+  .photo-upload {
+    margin: 20px 0;
+    text-align: left;
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      color: var(--ion-color-dark);
+    }
+
+    input[type='file'] {
+      margin-bottom: 10px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid var(--ion-color-medium);
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+  }
+
+  ion-button {
+    margin-top: 20px;
+  }
+}

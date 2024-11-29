@@ -1,0 +1,51 @@
+<ion-content [fullscreen]="true" class="car-create">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-align-items-center" style="height: calc(100vh - 75px);">
+      <ion-col size="12" size-md="6" size-lg="4">
+        <div class="form-container">
+          <img
+            ngSrc="./assets/CarRentalAgencyLogo.png"
+            priority
+            class="logo"
+            alt="Car Rental Agency Logo"
+            width="100"
+            height="120"
+          />
+          <h1>Création d'une voiture</h1>
+          <form [formGroup]="carForm" (ngSubmit)="onSaveCar()">
+            <ion-item>
+              <ion-label position="floating">Marque</ion-label>
+              <ion-input formControlName="brand" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Modèle</ion-label>
+              <ion-input formControlName="model" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Plaque d'immatriculation</ion-label>
+              <ion-input formControlName="licensePlate" required></ion-input>
+            </ion-item>
+
+            <div class="photo-upload">
+              <label>Photo avant :</label>
+              <input type="file" accept="image/*" (change)="onFileChange($event, 'frontPhoto')" />
+              <img *ngIf="previewFrontPhoto" [src]="previewFrontPhoto" alt="Prévisualisation avant" />
+            </div>
+
+            <div class="photo-upload">
+              <label>Photo arrière :</label>
+              <input type="file" accept="image/*" (change)="onFileChange($event, 'backPhoto')" />
+              <img *ngIf="previewBackPhoto" [src]="previewBackPhoto" alt="Prévisualisation arrière" />
+            </div>
+
+            <ion-button expand="full" type="submit" [disabled]="carForm.invalid || !frontPhotoBase64 || !backPhotoBase64">
+              Enregistrer la voiture
+            </ion-button>
+          </form>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
